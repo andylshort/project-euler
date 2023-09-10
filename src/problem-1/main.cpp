@@ -1,8 +1,9 @@
+#include "include/util.hpp"
+
 #include <iostream>
 #include <numeric>
 #include <set>
 #include <vector>
-
 
 static std::vector<int>
 getMultiplesOf(int Num, int Limit = 100) {
@@ -15,7 +16,6 @@ getMultiplesOf(int Num, int Limit = 100) {
     while ((CurrentMultiple + Num) < Limit);
     return Multiples;
 }
-
 
 int main(int argc, char* argv[]) {
 	std::cout << "Problem 1" << std::endl;
@@ -32,18 +32,13 @@ int main(int argc, char* argv[]) {
     std::set<int> UniqueNumbersBelowLimit(MultiplesOf3.begin(), MultiplesOf3.end());
     UniqueNumbersBelowLimit.insert(MultiplesOf5.begin(), MultiplesOf5.end());
 
-    for (int MultipleOf3 : MultiplesOf3) {
-        std::cout << MultipleOf3 << " ";
-    }
-    std::cout << std::endl;
-    for (int MultipleOf5 : MultiplesOf5) {
-        std::cout << MultipleOf5 << " ";
-    }
-    std::cout << std::endl;
-    for (int Num : UniqueNumbersBelowLimit) {
-        std::cout << Num << " ";
-    }
-    std::cout << std::endl;
+    printVector(MultiplesOf3);
+    printVector(MultiplesOf5);
+
+    std::vector<int> UniqueNumVec(
+        UniqueNumbersBelowLimit.begin(),
+        UniqueNumbersBelowLimit.end());
+    printVector(UniqueNumVec);
 
     int Sum =
         std::accumulate(
